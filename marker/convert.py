@@ -104,10 +104,12 @@ def convert_single_pdf(
 
     # Add block types in
     annotate_block_types(pages)
-
+    if total_processes < 1:
+        total_processes = 1
     # Dump debug data if flags are set
-    dump_bbox_debug_data(doc, fname, pages)
 
+    dump_bbox_debug_data(doc, fname, pages)
+    
     # Find reading order for blocks
     # Sort blocks by reading order
     surya_order(doc, pages, order_model, batch_multiplier=batch_multiplier)
